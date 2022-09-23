@@ -17,7 +17,6 @@ let moveForward = false;
 			const vertex = new THREE.Vector3();
 			const color = new THREE.Color();
 
-console.log(FirstPersonControls)
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('white')
 
