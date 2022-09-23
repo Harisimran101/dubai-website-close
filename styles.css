@@ -2,6 +2,10 @@
    margin: 0; 
 }
 
+body {
+    cursor: grab;
+}
+
 #blocker {
    position: absolute;
    width: 100%;
