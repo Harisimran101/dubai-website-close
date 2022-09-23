@@ -150,7 +150,7 @@ const loader = new GLTFLoader();
 loader.load('model.glb', (gltf) =>{
    const model = gltf.scene;
    scene.add(model);
-  model.scale.set(0.2,0.2,0.2)
+  model.scale.set(0.65,0.65,0.65)
 
   
 })
@@ -162,7 +162,7 @@ texture.mapping = THREE.EquirectangularReflectionMapping;
 })
 
 
-			camera.position.set(0,30,60)
+			camera.position.set(0,25,30)
 			const clock = new THREE.Clock();
 
             const update = () =>{
