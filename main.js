@@ -2,8 +2,9 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.136';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/loaders/RGBELoader.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/loaders/GLTFLoader.js';
+import { FirstPersonControls } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/controls/FirstPersonControls.js';
 
-
+console.log(FirstPersonControls)
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('white')
 
@@ -29,12 +30,16 @@ scene.background = new THREE.Color('white')
 	} );
 
 
-	const controls = new OrbitControls( camera, renderer.domElement );
-controls.maxDistance = 110;
-controls.minDistance = 2;
-controls.enableDamping = true;
-controls.dampingFactor = 0.035
-controls.maxPolarAngle = Math.PI /2.2
+// 	const controls = new OrbitControls( camera, renderer.domElement );
+// controls.maxDistance = 110;
+// controls.minDistance = 2;
+// controls.enableDamping = true;
+// controls.dampingFactor = 0.035
+// controls.maxPolarAngle = Math.PI /2.2
+
+const controls = new FirstPersonControls( camera, renderer.domElement );
+				controls.movementSpeed = 25;
+				controls.lookSpeed = 0.1;
 
 
 
@@ -49,18 +54,20 @@ loader.load('model.glb', (gltf) =>{
 
 new RGBELoader().load('https://assets.codepen.io/7014830/studio.hdr',function(texture){
 texture.mapping = THREE.EquirectangularReflectionMapping;
-
+ scene.background = texture
    scene.environment = texture;
 })
 
 
 			camera.position.set(0,30,60)
+			const clock = new THREE.Clock();
 
 function animate() {
 				requestAnimationFrame( animate );
          
-       controls.update();
-        			
+     //  controls.update();
+     controls.update( clock.getDelta() );
+		
 				renderer.render( scene, camera );
 			};
 
